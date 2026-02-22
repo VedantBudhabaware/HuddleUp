@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
 import { motion } from 'framer-motion';
 import PageWrapper from '@/components/ui/PageWrapper';
+import PageMeta from '@/components/PageMeta';
 import EmptyState from '@/components/ui/EmptyState';
 import { TrendingUp, Clock, Flame, Globe, ChevronRight, Search, Play, User, Link2, Video, Bookmark, Eye, Heart } from 'lucide-react';
 import VideoPlayer from '@/components/VideoPlayer';
@@ -246,8 +247,14 @@ const Explore = () => {
     );
   };
 
+  const pageTitle = selectedVideo ? selectedVideo.title : 'Explore Sports Universe';
+  const pageDescription = selectedVideo
+    ? (selectedVideo.description || `Watch ${selectedVideo.title} on HuddleUp`)
+    : 'Discover sports videos, match analysis, and stories from around the globe.';
+
   return (
     <PageWrapper>
+      <PageMeta title={pageTitle} description={pageDescription} />
       <div className="min-h-screen" style={{ background: 'var(--bg-primary)' }}>
       
       {/* Hero Header */}

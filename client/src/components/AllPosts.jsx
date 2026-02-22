@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { PlusCircle, Search, MessageSquare, Filter } from 'lucide-react';
 import { API } from '@/api';
 import PageWrapper from '@/components/ui/PageWrapper';
+import PageMeta from '@/components/PageMeta';
 import EmptyState from '@/components/ui/EmptyState';
 import { useSaved } from '@/hooks/useSaved';
 import { toast } from 'sonner';
@@ -79,8 +80,15 @@ const AllPosts = () => {
     setFilteredPosts(filtered);
   }, [posts, searchTerm, selectedCategory]);
 
+  const highlightedPost = highlightPostId && posts.length ? posts.find((p) => (p._id || p.id) === highlightPostId) : null;
+  const pageTitle = highlightedPost?.title ? highlightedPost.title : 'Discussion';
+  const pageDescription = highlightedPost
+    ? (highlightedPost.content?.slice(0, 155) || highlightedPost.title) + (highlightedPost.content?.length > 155 ? '…' : '')
+    : 'Join the sports discussion. Read and react to posts from the HuddleUp community.';
+
   return (
     <PageWrapper>
+      <PageMeta title={pageTitle} description={pageDescription} />
       <div className="min-h-screen py-8" style={{ background: 'var(--bg-primary)' }}>
         <div className="max-w-6xl mx-auto px-4">
 
