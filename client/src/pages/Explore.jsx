@@ -23,6 +23,7 @@ const Explore = () => {
   const [activeFilter, setActiveFilter] = useState('ALL');
   const [sortBy, setSortBy] = useState('newest'); // newest | views | likes
   const [allVideos, setAllVideos] = useState([]);
+  const hasSearch = searchTerm.trim() !== '' || activeFilter !== 'ALL';
 
   const fetchAllVideos = async () => {
     try {
@@ -33,6 +34,23 @@ const Explore = () => {
       console.error("Error fetching videos:", error);
     }
   };
+
+  const getFilteredVideos = () => {
+  return allVideos.filter((video) => {
+
+    // Search filter
+    const matchesSearch =
+      searchTerm.trim() === '' ||
+      video.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      video.description?.toLowerCase().includes(searchTerm.toLowerCase());
+
+    // Category filter
+    const matchesCategory =
+      activeFilter === 'ALL' || video.category === activeFilter;
+
+    return matchesSearch && matchesCategory;
+  });
+};
 
   useEffect(() => {
     fetchAllVideos();
@@ -368,6 +386,7 @@ const Explore = () => {
               (() => {
                 const filteredVideos = getFilteredVideos();
                 if (filteredVideos.length === 0) {
+                  
                   return (
                     <EmptyState
                       icon={Video}
