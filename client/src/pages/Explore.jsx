@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
 import { motion } from 'framer-motion';
 import PageWrapper from '@/components/ui/PageWrapper';
+import PageMeta from '@/components/PageMeta';
 import EmptyState from '@/components/ui/EmptyState';
 import { TrendingUp, Clock, Flame, Globe, ChevronRight, Search, Play, User, Link2, Video, Bookmark, Eye, Heart } from 'lucide-react';
 import VideoPlayer from '@/components/VideoPlayer';
@@ -228,25 +229,14 @@ const Explore = () => {
     );
   };
 
-  const hasSearch = searchTerm.length > 0 || activeFilter !== 'ALL';
-
-  const getFilteredVideos = () => {
-    let filtered = allVideos;
-    if (activeFilter !== 'ALL') {
-      filtered = filtered.filter(v => v.category === activeFilter);
-    }
-    if (searchTerm) {
-      filtered = filtered.filter(v =>
-        v.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        v.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        v.uploadedBy?.username?.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
-    return filtered;
-  };
+  const pageTitle = selectedVideo ? selectedVideo.title : 'Explore Sports Universe';
+  const pageDescription = selectedVideo
+    ? (selectedVideo.description || `Watch ${selectedVideo.title} on HuddleUp`)
+    : 'Discover sports videos, match analysis, and stories from around the globe.';
 
   return (
     <PageWrapper>
+      <PageMeta title={pageTitle} description={pageDescription} />
       <div className="min-h-screen" style={{ background: 'var(--bg-primary)' }}>
 
         <motion.section

@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import PageWrapper from "@/components/ui/PageWrapper";
+import PageMeta from "@/components/PageMeta";
 import { Users, Zap, Shield, Globe, TrendingUp, Heart } from "lucide-react";
 
 const About = () => {
@@ -30,6 +31,7 @@ const About = () => {
 
   return (
     <PageWrapper>
+      <PageMeta title="About" description="HuddleUp is where sports fans share moments, debate the play, and connect. Community-first, built for speed." />
     <div className="min-h-screen" style={{ background: 'var(--bg-primary)' }}>
       
       {/* Hero Section */}
