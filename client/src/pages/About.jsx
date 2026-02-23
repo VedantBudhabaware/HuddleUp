@@ -7,7 +7,10 @@ const About = () => {
   const stats = [
     { value: "10K+", label: "moments shared daily", color: "var(--accent)", icon: TrendingUp },
     { value: "25+", label: "sports from cricket to curling", color: "var(--turf-green)", icon: Globe },
-    { value: "50+", label: "countries watching together", color: "var(--sun-yellow)", icon: Users }
+    { value: "50+", label: "countries watching together", color: "var(--sun-yellow)", icon: Users },
+    { value: "5K+", label: "active users online", color: "#f472b6", icon: Heart },
+    { value: "99.99%", label: "uptime this year", color: "#a3e635", icon: Shield },
+    { value: "100+", label: "live matches streamed", color: "#fbbf24", icon: Zap },
   ];
 
   const principles = [
@@ -25,212 +28,267 @@ const About = () => {
       icon: Shield,
       title: "Safe Space, Real Talk",
       description: "Rivalries are fun. Toxicity isn't. We keep it competitive but respectful, so everyone can bring their A-game without the BS."
-    }
+    },
+    {
+      icon: Users,
+      title: "Collaborative Growth",
+      description: "Open-source spirit: built by fans, for fans. Contributions and feedback shape our roadmap."
+    },
+    {
+      icon: Globe,
+      title: "Global Accessibility",
+      description: "Accessible from anywhere, on any device. Multilingual support and inclusive design."
+    },
+    {
+      icon: TrendingUp,
+      title: "Continuous Innovation",
+      description: "We ship new features and improvements every month, driven by community needs."
+    },
   ];
 
   return (
     <PageWrapper>
-    <div className="min-h-screen" style={{ background: 'var(--bg-primary)' }}>
-      
-      {/* Hero Section */}
-      <section className="px-6 md:px-12 pt-20 pb-16">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight">
-              We built{' '}
-              <span style={{
+      <div
+        className="min-h-screen relative"
+        style={{
+          background: 'linear-gradient(120deg, var(--bg-primary) 70%, #e0f2fe 100%)',
+        }}
+      >
+        {/* Hero Section */}
+        <section className="px-6 md:px-12 pt-24 pb-20 relative">
+          <div className="absolute inset-0 pointer-events-none select-none opacity-30" aria-hidden="true">
+            <div style={{
+              background: 'radial-gradient(circle at 60% 40%, #38bdf8 0%, transparent 70%)',
+              width: '100%', height: '100%'
+            }} />
+          </div>
+          <div className="max-w-5xl mx-auto relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h1 className="text-5xl md:text-7xl font-black mb-8 leading-tight tracking-tight">
+                We built{' '}
+                <span style={{
+                  background: 'linear-gradient(135deg, #06b6d4, #3b82f6)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  letterSpacing: '0.01em',
+                }}>
+                  HuddleUp
+                </span>
+                <br />
+                for the fans
+              </h1>
+              <p className="text-xl md:text-2xl max-w-3xl mb-4" style={{ color: 'var(--text-sub)', lineHeight: '1.6' }}>
+                Because fans were yelling into the void after moments that deserved a crowd.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Divider */}
+        <div className="w-full h-1 bg-gradient-to-r from-cyan-400/30 via-blue-400/10 to-transparent mb-8" />
+
+        {/* Story Section */}
+        <section className="px-6 md:px-12 py-16">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <p className="text-lg md:text-xl font-medium" style={{ color: 'var(--text-main)', lineHeight: '1.8' }}>
+                Every platform promised community. Most delivered isolation.
+              </p>
+              <p className="text-lg md:text-xl" style={{ color: 'var(--text-sub)', lineHeight: '1.8' }}>
+                You'd upload the greatest play you've ever seen, and it would vanish in 60 seconds. 
+                You'd start a debate about the GOAT, and the algorithm would bury it for engagement-bait.
+              </p>
+              <div className="py-12">
+                <p className="text-2xl md:text-4xl font-bold" style={{ color: 'var(--text-main)', lineHeight: '1.4' }}>
+                  So we built something different.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Stats Grid */}
+        <section className="px-6 md:px-12 py-16">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {stats.map((stat, index) => {
+                const IconComponent = stat.icon;
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.08 }}
+                    whileHover={{ scale: 1.04, boxShadow: "0 8px 32px 0 rgba(56,189,248,0.10)" }}
+                    className="relative p-8 group cursor-pointer shadow-sm hover:shadow-lg transition-all duration-200"
+                    style={{
+                      background: 'linear-gradient(120deg, var(--bg-surface) 80%, #f0f9ff 100%)',
+                      borderLeft: `4px solid ${stat.color}`,
+                      borderRadius: '12px',
+                    }}
+                  >
+                    <IconComponent 
+                      className="w-10 h-10 mb-4 group-hover:scale-110 transition-transform duration-200" 
+                      style={{ color: stat.color }} 
+                      strokeWidth={1.5}
+                    />
+                    <div className="text-5xl md:text-6xl font-black mb-3" style={{ color: stat.color }}>
+                      {stat.value}
+                    </div>
+                    <p className="text-base font-medium" style={{ color: 'var(--text-sub)' }}>
+                      {stat.label}
+                    </p>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* Divider */}
+        <div className="w-full h-1 bg-gradient-to-r from-transparent via-blue-400/10 to-cyan-400/30 mb-8" />
+
+        {/* Philosophy Section */}
+        <section className="px-6 md:px-12 py-16">
+          <div className="max-w-4xl mx-auto">
+            <p className="text-lg md:text-xl mb-12 font-medium" style={{ color: 'var(--text-sub)', lineHeight: '1.8' }}>
+              We're not trying to replace Twitter for hot takes or YouTube for polished content. 
+              We're the place you go when something just happened and you need to talk about it <em>right now</em>.
+            </p>
+            <div className="space-y-6 mb-16">
+              <p className="text-lg" style={{ color: 'var(--text-sub)', lineHeight: '1.8' }}>
+                We don't use recommendation algorithms.
+              </p>
+              <p className="text-lg" style={{ color: 'var(--text-sub)', lineHeight: '1.8' }}>
+                We don't sell your attention to advertisers.
+              </p>
+              <p className="text-lg" style={{ color: 'var(--text-sub)', lineHeight: '1.8' }}>
+                We don't optimize for "engagement" — we optimize for actual conversation between actual fans.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Principles Cards */}
+        <section className="px-6 md:px-12 py-16">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-sm font-bold uppercase tracking-widest mb-12" 
+              style={{ color: 'var(--text-sub)', letterSpacing: '0.2em' }}>
+              What Makes Us Different
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {principles.map((principle, index) => {
+                const IconComponent = principle.icon;
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.11 }}
+                    whileHover={{ y: -8, scale: 1.03, boxShadow: "0 8px 32px 0 rgba(56,189,248,0.10)" }}
+                    className="p-8 group cursor-pointer shadow-sm hover:shadow-lg transition-all duration-200"
+                    style={{
+                      background: 'linear-gradient(120deg, var(--bg-surface) 80%, #f0f9ff 100%)',
+                      borderRadius: '12px',
+                      border: '1px solid var(--border-subtle)',
+                    }}
+                  >
+                    <IconComponent 
+                      className="w-12 h-12 mb-4 group-hover:scale-110 transition-transform duration-200" 
+                      style={{ color: 'var(--accent)' }} 
+                      strokeWidth={1.5}
+                    />
+                    <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--text-main)' }}>
+                      {principle.title}
+                    </h3>
+                    <p style={{ color: 'var(--text-sub)', lineHeight: '1.7' }}>
+                      {principle.description}
+                    </p>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* Features & Technologies Section */}
+        <section className="px-6 md:px-12 py-16">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-lg font-bold uppercase tracking-widest mb-8 text-center" style={{ color: 'var(--text-main)', letterSpacing: '0.1em' }}>
+              Key Features & Technologies
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <ul className="list-disc pl-6 space-y-2 text-base md:text-lg" style={{ color: 'var(--text-sub)' }}>
+                  <li>Real-time chat and live match rooms</li>
+                  <li>Instant video highlight uploads</li>
+                  <li>Interactive comment sections and reactions</li>
+                  <li>Personalized notification feed</li>
+                  <li>Advanced moderation and reporting tools</li>
+                  <li>Mobile-first responsive design</li>
+                  <li>Accessibility and dark mode support</li>
+                </ul>
+              </div>
+              <div>
+                <ul className="list-disc pl-6 space-y-2 text-base md:text-lg" style={{ color: 'var(--text-sub)' }}>
+                  <li>Frontend: React, Vite, Tailwind CSS, Framer Motion</li>
+                  <li>Backend: Node.js, Express.js, MongoDB</li>
+                  <li>WebSockets for live updates</li>
+                  <li>Cloud deployment (Vercel)</li>
+                  <li>Open-source and community-driven</li>
+                  <li>Continuous integration & delivery</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Divider */}
+        <div className="w-full h-1 bg-gradient-to-r from-cyan-400/30 via-blue-400/10 to-transparent mb-8" />
+
+        {/* Closing Statement & CTA */}
+        <section className="px-6 md:px-12 py-20">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+            >
+              <p className="text-3xl md:text-5xl font-black leading-tight" style={{ color: 'var(--text-main)' }}>
+                This is your stadium.
+              </p>
+              <p className="text-3xl md:text-5xl font-black leading-tight mt-2" style={{ 
                 background: 'linear-gradient(135deg, #06b6d4, #3b82f6)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
+                backgroundClip: 'text',
               }}>
-                HuddleUp
-              </span>
-              <br />
-              for the fans
-            </h1>
-            <p className="text-xl md:text-2xl max-w-3xl" style={{ 
-              color: 'var(--text-sub)', 
-              lineHeight: '1.6' 
-            }}>
-              Because fans were yelling into the void after moments that deserved a crowd.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Story Section */}
-      <section className="px-6 md:px-12 py-16">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="space-y-8"
-          >
-            <p className="text-lg md:text-xl" style={{ 
-              color: 'var(--text-main)', 
-              lineHeight: '1.8' 
-            }}>
-              Every platform promised community. Most delivered isolation.
-            </p>
-            
-            <p className="text-lg md:text-xl" style={{ 
-              color: 'var(--text-sub)', 
-              lineHeight: '1.8' 
-            }}>
-              You'd upload the greatest play you've ever seen, and it would vanish in 60 seconds. 
-              You'd start a debate about the GOAT, and the algorithm would bury it for engagement-bait.
-            </p>
-
-            <div className="py-12">
-              <p className="text-2xl md:text-4xl font-bold" style={{ 
-                color: 'var(--text-main)',
-                lineHeight: '1.4'
-              }}>
-                So we built something different.
+                We just keep the lights on.
               </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Stats Grid */}
-      <section className="px-6 md:px-12 py-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {stats.map((stat, index) => {
-              const IconComponent = stat.icon;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="relative p-8"
-                  style={{
-                    background: 'var(--bg-surface)',
-                    borderLeft: `4px solid ${stat.color}`,
-                    borderRadius: '8px'
-                  }}
+              <div className="mt-10 flex justify-center">
+                <a
+                  href="/register"
+                  className="inline-block px-8 py-3 rounded-full font-bold text-lg bg-gradient-to-r from-cyan-400 to-blue-500 text-white shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-200"
                 >
-                  <IconComponent 
-                    className="w-8 h-8 mb-4" 
-                    style={{ color: stat.color }} 
-                    strokeWidth={1.5}
-                  />
-                  <div className="text-5xl md:text-6xl font-black mb-3" 
-                    style={{ color: stat.color }}>
-                    {stat.value}
-                  </div>
-                  <p className="text-base" style={{ color: 'var(--text-sub)' }}>
-                    {stat.label}
-                  </p>
-                </motion.div>
-              );
-            })}
+                  Join the Community
+                </a>
+              </div>
+            </motion.div>
           </div>
-        </div>
-      </section>
-
-      {/* Philosophy Section */}
-      <section className="px-6 md:px-12 py-16">
-        <div className="max-w-4xl mx-auto">
-          <p className="text-lg md:text-xl mb-12" style={{ 
-            color: 'var(--text-sub)', 
-            lineHeight: '1.8' 
-          }}>
-            We're not trying to replace Twitter for hot takes or YouTube for polished content. 
-            We're the place you go when something just happened and you need to talk about it <em>right now</em>.
-          </p>
-
-          <div className="space-y-6 mb-16">
-            <p className="text-lg" style={{ color: 'var(--text-sub)', lineHeight: '1.8' }}>
-              We don't use recommendation algorithms.
-            </p>
-            <p className="text-lg" style={{ color: 'var(--text-sub)', lineHeight: '1.8' }}>
-              We don't sell your attention to advertisers.
-            </p>
-            <p className="text-lg" style={{ color: 'var(--text-sub)', lineHeight: '1.8' }}>
-              We don't optimize for "engagement" — we optimize for actual conversation between actual fans.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Principles Cards */}
-      <section className="px-6 md:px-12 py-16">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-sm font-bold uppercase tracking-widest mb-12" 
-            style={{ color: 'var(--text-sub)', letterSpacing: '0.2em' }}>
-            What Makes Us Different
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {principles.map((principle, index) => {
-              const IconComponent = principle.icon;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.15 }}
-                  whileHover={{ y: -4 }}
-                  className="p-6"
-                  style={{
-                    background: 'var(--bg-surface)',
-                    borderRadius: '8px',
-                    border: '1px solid var(--border-subtle)'
-                  }}
-                >
-                  <IconComponent 
-                    className="w-10 h-10 mb-4" 
-                    style={{ color: 'var(--accent)' }} 
-                    strokeWidth={1.5}
-                  />
-                  <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--text-main)' }}>
-                    {principle.title}
-                  </h3>
-                  <p style={{ color: 'var(--text-sub)', lineHeight: '1.7' }}>
-                    {principle.description}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Closing Statement */}
-      <section className="px-6 md:px-12 py-20">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-3xl md:text-5xl font-black leading-tight" style={{ color: 'var(--text-main)' }}>
-              This is your stadium.
-            </p>
-            <p className="text-3xl md:text-5xl font-black leading-tight mt-2" style={{ 
-              background: 'linear-gradient(135deg, #06b6d4, #3b82f6)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text'
-            }}>
-              We just keep the lights on.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-    </div>
+        </section>
+      </div>
     </PageWrapper>
   );
 };
